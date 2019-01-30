@@ -1,8 +1,20 @@
 {
   "name": "run-anything",
   "version": "0.1.0",
+  "description": "Run anything from anywhere",
+  "author": {
+    "name": "Yang Ning",
+    "email": "steven_nyang@outlook.com",
+    "url": "https://github.com/snyang"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snyang/run-anything.git"
+  },
   "private": true,
   "dependencies": {
+    "node-ssh": "^5.1.2",
     "prismjs": "^1.15.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
@@ -13,15 +25,29 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "flaw": "flow"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn flow"
+    }
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "eslint-config-react-app": "^3.0.6",
+    "eslint-plugin-flowtype": "^3.2.1",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.0",
+    "eslint-plugin-react": "^7.12.4",
+    "flow-bin": "^0.91.0",
+    "gulp": "^4.0.0"
+  }
 }
