@@ -12,8 +12,8 @@ var config = {
   "source": {
     "build_dir": "build",
     "log_dir": "logs",
-    "startServer_dir": path.join(__dirname, "..", "remote", "startServer.js"),
-    "startServer_name": "startServer.js",
+    "startServer_dir": path.join(__dirname, "..", "server", "StartServer.js"),
+    "startServer_name": "StartServer.js",
     "package_json_dir": "package.json",
   },
   "remote": {

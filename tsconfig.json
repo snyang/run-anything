@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+      "alwaysStrict": true,
+      "emitDecoratorMetadata": true, // for typeorm
+      "experimentalDecorators": true, // for typeorm
+      "lib": ["es2017", "dom"],
+      "strict": false,
+      "noUnusedLocals": true,
+      "noEmit": true,
+      "pretty": true,
+      "target": "esnext",
+      "module": "commonjs", // work for node.js only
+      "moduleResolution": "node"
+  },
+  "include": [
+      "server/**/*"
+  ],
+  "exclude": [
+      "node_modules",
+      "../**/*.spec.ts"
+  ]
+}

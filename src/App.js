@@ -4,11 +4,11 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-sql';
 import 'prismjs/prism.js';
-import './styles/main.scss'
+import './styles/main.scss';
+import SqlRestClient from './client/SqlRestClient';
 
 const code = `Select *
-From Table
-Where id = 1
+From contacts
 `;
 
 class App extends React.Component {
@@ -17,7 +17,12 @@ class App extends React.Component {
   render() {
     function handleClick(e) {
       e.preventDefault();
-      alert('i will run...');
+      new SqlRestClient().execute(JSON.stringify({sql: code})).then(function(response) {
+        // all loaded
+        alert('loaded: ' + JSON.stringify(response));
+      }, function(error) {
+        alert('error: ' + JSON.stringify(error));
+      });
     }
     
     return (
