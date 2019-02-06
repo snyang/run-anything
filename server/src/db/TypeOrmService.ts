@@ -26,10 +26,4 @@ export class TypeOrmService extends IDbService {
     let rawData = await conn.manager.query(sql);
     return rawData;
   }
-
-  async run(sql: string): Promise<any> {
-    let conn = await this.connect();
-    let rawData = await conn.manager.query(sql);
-    return rawData;
-  }
 }

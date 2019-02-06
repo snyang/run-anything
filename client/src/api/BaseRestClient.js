@@ -20,9 +20,15 @@ export default class RestClient {
           },
         },
         (error, response, responseBody) => {
+          if (error) {
+            reject(responseBody);
+            return;
+          }
           if (response !== undefined && response.statusCode === 200) {
             resolve(responseBody);
+            return;
           }
+          reject(responseBody);
         })
         .on('error', function (error) {
           reject(error);
