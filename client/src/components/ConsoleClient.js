@@ -1,13 +1,26 @@
 import React from 'react';
-import SqlConsoleClient from './extensions/SqlConsoleClient'
+import PropTypes from 'prop-types';
+import SettingManager from '../core/SettingManager';
+import SettingTypes from '../core/SettingTypes';
 
 
-class ConsoleClient extends React.Component {
+export default class ConsoleClient extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      context: props.context,
+    };
+  }
+
+  static get propTypes() {
+    return {
+      context: PropTypes.object,
+    };
+  }
   render() {
+    let Client = SettingManager.getSetting(this.state.context, SettingTypes.extension).getConsole();
     return (
-      <SqlConsoleClient />
+      <Client context={this.state.context}/>
     );
   }
 }
-
-export default ConsoleClient;

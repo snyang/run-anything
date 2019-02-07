@@ -13,7 +13,7 @@ export class SqlService implements IService {
   async execute(request: Request, response: Response) {
     let service = new TypeOrmService({
       type: "sqlite",
-      database: path.join(__dirname, '..', '..', 'test', 'data', 'sqlite.db')
+      database: path.join(__dirname, '..', '..', '..', 'test', 'data', 'sqlite.db')
     })
     try {
       if (!request.is('application/json')) {
@@ -22,7 +22,8 @@ export class SqlService implements IService {
       let result = await service.query(request.body.sql);
       response.json({ rows: result });
     } catch (error) {
-      response.status(500).json({ error: error });
+      // use error object
+      response.status(500).json(error);
     }
   }
 }

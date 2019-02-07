@@ -18,6 +18,11 @@
 .mb0 { margin-bottom: 0   !important; }
 .mb1 { margin-bottom: 1em !important; }
 
+// div table
+.table              { display: table; }
+.table > div        { display: table-row; }
+.table > div > div  { display: table-cell; }
+
 .menu-bar {
   left: 0;
   top: 0;

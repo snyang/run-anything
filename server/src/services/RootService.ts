@@ -11,6 +11,12 @@ export class RootService implements IService {
     // this._application = application;
     application.get('/', this.loadDefaultPage);
     application.delete('/api/action/shutdown', this.shutdown)
+
+    application.options('*', (request: Request, response: Response) => {
+      response.json({
+        status: 'OK'
+      });
+    });
   }
 
   loadDefaultPage(request: Request, response: Response) {
@@ -22,7 +28,7 @@ export class RootService implements IService {
   }
 
   shutdown(request: Request, response: Response) {
-    response.json({message: 'shutdown...'});
+    response.json({ message: 'shutdown...' });
     Startup.shutdown();
   }
 }

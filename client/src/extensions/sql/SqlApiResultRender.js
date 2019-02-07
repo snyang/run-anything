@@ -15,13 +15,13 @@ class SqlResultRender extends React.Component {
   static get propTypes() {
     return {
       data: PropTypes.array,
-      error: PropTypes.any
+      error: PropTypes.any,
     };
   }
-
+  
   render() {
     if (this.state.error) {
-      return <pre>{JSON.stringify(JSON.parse(this.state.error), null, 2)}</pre>;
+      return <pre>{JSON.stringify(this.state.error, null, 2)}</pre>;
     }
 
     if (this.state.data) {

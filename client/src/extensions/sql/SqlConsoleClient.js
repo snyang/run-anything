@@ -1,11 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-sql';
 import 'prismjs/prism.js';
-import SqlRestClient from '../../api/SqlRestClient';
-import SqlResultRender from '../../api/SqlResultRender'
+import SqlApiClient from './SqlApiClient';
+import SqlApiResultRender from './SqlApiResultRender'
+import SettingManager from '../../core/SettingManager';
+import SettingTypes from '../../core/SettingTypes';
 
 const code = `Select *
 From contacts
@@ -18,19 +21,37 @@ class SqlConsoleClient extends React.Component {
     this.resultRef = React.createRef();
     this.handleClick = this.handleClick.bind(this);
     this.state = {
+      context: props.context,
       code: code,
       sqlRows: []
+    };
+  }
+
+  static get propTypes() {
+    return {
+      context: PropTypes.object,
     };
   }
 
   handleClick(e) {
     e.preventDefault();
     let that = this;
-    new SqlRestClient().execute(JSON.stringify({ sql: this.editorRef.current.props.value }))
+    let server = SettingManager.getSetting(this.state.context, SettingTypes.server);
+
+    if (server === undefined) {
+      that.resultRef.current.setState({
+        data: undefined,
+        error: { error: "tag 'server' is not configured well." }
+      });
+      return;
+    }
+
+    new SqlApiClient(`${server.hostUrl}`)
+      .execute({ sql: this.editorRef.current.props.value })
       .then((response) => {
         that.resultRef.current.setState(
           {
-            data: JSON.parse(response).rows,
+            data: response.rows,
             error: undefined
           });
       })
@@ -63,7 +84,7 @@ class SqlConsoleClient extends React.Component {
           <button type="button" onClick={this.handleClick}>run</button>
         </div>
         <div className='console-result'>
-          <SqlResultRender
+          <SqlApiResultRender
             ref={this.resultRef}
             data={this.state.sqlRows} />
         </div>

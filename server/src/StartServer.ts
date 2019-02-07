@@ -36,6 +36,7 @@ export class Startup {
 
       // Use json as content-type
       res.setHeader('Content-Type', 'application/json');
+      res.contentType('application/json');
       // Pass to next layer of middleware
       next();
     });
