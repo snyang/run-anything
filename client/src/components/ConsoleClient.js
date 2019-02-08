@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import SettingManager from '../core/SettingManager';
 import SettingTypes from '../core/SettingTypes';
 
-
 export default class ConsoleClient extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +16,7 @@ export default class ConsoleClient extends React.Component {
       context: PropTypes.object,
     };
   }
+  
   render() {
     let Client = SettingManager.getSetting(this.state.context, SettingTypes.extension).getConsole();
     return (

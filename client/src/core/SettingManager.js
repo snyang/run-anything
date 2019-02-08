@@ -14,11 +14,25 @@ class SettingManager {
       if (property === {}
         || property.type !== type
         || property.name !== name) {
-        alert(property.type);
         continue;
       }
       return property.value;
     }
+  }
+
+  static getTypeSettings(type) {
+    let settings = [];
+    for (let index = 0; index < AppConfig._settings.properties.length; index++) {
+      let property = AppConfig._settings.properties[index];
+      if (property === {}
+        || property.type !== type) {
+        alert(property.type);
+        continue;
+      }
+      settings.push(property);
+    }
+
+    return settings;
   }
 
   static _getContextSetting(context, type) {

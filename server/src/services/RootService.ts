@@ -2,16 +2,14 @@ import { Application, Request, Response } from 'express';
 import path = require('path');
 import fs = require('fs');
 import { IService } from './IService';
-import { Startup } from '../StartServer';
 
 export class RootService implements IService {
-  // private _application: Application;
 
   attach(application: Application) {
-    // this._application = application;
+    // GET '/'
     application.get('/', this.loadDefaultPage);
-    application.delete('/api/action/shutdown', this.shutdown)
 
+    // OPTIONS *
     application.options('*', (request: Request, response: Response) => {
       response.json({
         status: 'OK'
@@ -27,8 +25,4 @@ export class RootService implements IService {
     response.sendFile(defaultPage);
   }
 
-  shutdown(request: Request, response: Response) {
-    response.json({ message: 'shutdown...' });
-    Startup.shutdown();
-  }
 }

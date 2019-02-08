@@ -1,0 +1,17 @@
+{
+  "properties": [
+    {
+      "name": "hostname",
+      "value": "localhost"
+    }
+  ],
+  "db": [
+    {
+      "name": "sqlite db1",
+      "value": {
+        "type": "sqlite",
+        "database": "../../test/data/sqlite.db"
+      }
+    }
+  ]
+}

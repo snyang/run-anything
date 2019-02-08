@@ -1,4 +1,5 @@
 // begin extension entries
+import CoreEntry from './extensions/core/CoreEntry';
 import SqlEntry from './extensions/sql/SqlEntry';
 // end extension entries
 
@@ -8,6 +9,7 @@ import SettingTypes from './core/SettingTypes';
 
 export default class AppConfig {
   static _entries = [
+    CoreEntry,
     SqlEntry
   ];
 

@@ -1,29 +1,31 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Menu extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleClick_AddConsole = this.handleClick_AddConsole.bind(this);
+    this.state =
+      {
+        handleClick: props.handleClick,
+        onAddConsole: props.onAddConsole,
+        onEditSetting: props.onEditSetting
+      };
   }
 
-  handleClick(e) {
-    e.preventDefault();
-    alert(e.currentTarget.innerText)
-  }
-
-  handleClick_AddConsole(e) {
-    e.preventDefault();
-    alert(e.currentTarget.innerText)
+  static get propTypes() {
+    return {
+      handleClick: PropTypes.func,
+      onAddConsole: PropTypes.func,
+      onEditSetting: PropTypes.func
+    };
   }
 
   render() {
     return (
       <div className='menu-bar'>
-        <span className='menu-item left' onClick={this.handleClick_AddConsole}>+</span>
-        <div className='menu-item left' onClick={this.handleClick}>&gt;</div>
-        <div className='menu-item left' onClick={this.handleClick}>&lt;</div>
-        <div className='menu-item right' onClick={this.handleClick}>?</div>
+        <div className='menu-item left' onClick={this.state.onAddConsole}>+</div>
+        <div className='menu-item left' onClick={this.state.onEditSetting}>*</div>
+        <div className='menu-item right' onClick={this.state.handleClick}>?</div>
       </div>
     );
   }

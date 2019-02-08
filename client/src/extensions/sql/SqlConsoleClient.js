@@ -9,9 +9,9 @@ import SqlApiClient from './SqlApiClient';
 import SqlApiResultRender from './SqlApiResultRender'
 import SettingManager from '../../core/SettingManager';
 import SettingTypes from '../../core/SettingTypes';
+import ExecuteBody from './model/ExecuteBody'
 
-const code = `Select *
-From contacts
+const statement = `
 `;
 
 class SqlConsoleClient extends React.Component {
@@ -19,10 +19,10 @@ class SqlConsoleClient extends React.Component {
     super(props);
     this.editorRef = React.createRef();
     this.resultRef = React.createRef();
-    this.handleClick = this.handleClick.bind(this);
+    this.onExecute = this.onExecute.bind(this);
     this.state = {
       context: props.context,
-      code: code,
+      statement: statement,
       sqlRows: []
     };
   }
@@ -33,7 +33,7 @@ class SqlConsoleClient extends React.Component {
     };
   }
 
-  handleClick(e) {
+  onExecute(e) {
     e.preventDefault();
     let that = this;
     let server = SettingManager.getSetting(this.state.context, SettingTypes.server);
@@ -47,7 +47,7 @@ class SqlConsoleClient extends React.Component {
     }
 
     new SqlApiClient(`${server.hostUrl}`)
-      .execute({ sql: this.editorRef.current.props.value })
+      .execute(new ExecuteBody(this.editorRef.current.props.value))
       .then((response) => {
         that.resultRef.current.setState(
           {
@@ -70,8 +70,8 @@ class SqlConsoleClient extends React.Component {
         <div className='console-editor'>
           <Editor
             ref={this.editorRef}
-            value={this.state.code}
-            onValueChange={code => this.setState({ code })}
+            value={this.state.statement}
+            onValueChange={code => this.setState({ statement:code })}
             highlight={code => highlight(code, languages.sql)}
             padding={10}
             style={{
@@ -81,7 +81,7 @@ class SqlConsoleClient extends React.Component {
           />
         </div>
         <div className='console-command-bar'>
-          <button type="button" onClick={this.handleClick}>run</button>
+          <button type="button" onClick={this.onExecute}>Run</button>
         </div>
         <div className='console-result'>
           <SqlApiResultRender

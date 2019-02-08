@@ -1,5 +1,4 @@
-
-export default class ApiExecuteResult {
+export default class ExecuteResult {
 
   constructor(result) {
     this._result = JSON.parse(result);

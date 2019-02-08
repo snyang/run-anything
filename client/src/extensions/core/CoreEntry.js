@@ -1,17 +1,17 @@
 import ExtensionInfo from '../../core/ExtensionInfo';
 import SettingTypes from '../../core/SettingTypes';
-import SqlConsoleClient from './SqlConsoleClient';
-import SqlConstants from './SqlConstants';
+import ServerManagerConsoleClient from './ServerManagerConsoleClient'
+import EntryConstants from './CoreConstants';
 
-export default class SqlEntry {
-  static _name = SqlConstants.entryName;
+export default class CoreEntry {
+  static _name = EntryConstants.entryName;
   static _extensionInfo = undefined;
 
   static getExtensionInfo() {
     if (this._extensionInfo === undefined) {
-      this._extensionInfo = new ExtensionInfo(this._name, SqlConsoleClient);
+      this._extensionInfo = new ExtensionInfo(this._name, ServerManagerConsoleClient);
       this._extensionInfo._requiredClientSettings = [SettingTypes.server];
-      this._extensionInfo._requiredServerSettings = [SqlConstants.settingTypeDb];
+
     }
     return this._extensionInfo;
   }
