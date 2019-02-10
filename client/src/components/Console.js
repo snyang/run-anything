@@ -14,7 +14,7 @@ class Console extends React.Component {
 
   static get propTypes() {
     return {
-      tags: PropTypes.object,
+      tags: PropTypes.array,
       visible: PropTypes.bool,
     };
   }
@@ -29,10 +29,10 @@ class Console extends React.Component {
       return (<div />);
     }
     return (
-      <div>
+      <>
         <ConsoleTagBar context={this.state} onClosePanel={this.onClosePanel} />
         <ConsoleClient context={this.state} />
-      </div>
+      </>
     );
   }
 }

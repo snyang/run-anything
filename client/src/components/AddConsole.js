@@ -46,7 +46,8 @@ export default class AddConsole extends React.Component {
           value: this.serverRef.current.options[this.serverRef.current.selectedIndex].value
         }
       ]
-    }
+    };
+    
     this.onSave(value);
   }
 

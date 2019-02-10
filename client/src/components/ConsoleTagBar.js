@@ -31,7 +31,7 @@ class ConsoleTagBar extends React.Component {
       tagControls.push(<div key={i} className='tag-item left'>{tag.type}: {tag.value} <span className='tag-close'>x</span></div>)
     }
     return (
-      <div className='tag-bar'>
+      <div className='console-pane tag-bar'>
         <div className='tag-add left'>+</div>
         {tagControls}
         <div className='right' onClick={this.onClosePanel}>X</div>

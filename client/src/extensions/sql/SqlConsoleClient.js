@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Editor from 'react-simple-code-editor';
-import { highlight, languages } from 'prismjs/components/prism-core';
-import 'prismjs/themes/prism.css';
-import 'prismjs/components/prism-sql';
-import 'prismjs/prism.js';
 import SqlApiClient from './SqlApiClient';
 import SqlApiResultRender from './SqlApiResultRender'
 import SettingManager from '../../core/SettingManager';
 import SettingTypes from '../../core/SettingTypes';
 import ExecuteBody from './model/ExecuteBody'
 
-const statement = `
+import Prism from 'prismjs';
+import 'prismjs/components/prism-sql';
+
+const statement = `SELECT * 
+FROM Contacts 
+WHERE true;
 `;
 
 class SqlConsoleClient extends React.Component {
@@ -66,29 +67,25 @@ class SqlConsoleClient extends React.Component {
   render() {
 
     return (
-      <div className='console-panel'>
-        <div className='console-editor'>
+      <>
+        <div className='console-pane console-editor'>
           <Editor
             ref={this.editorRef}
             value={this.state.statement}
-            onValueChange={code => this.setState({ statement:code })}
-            highlight={code => highlight(code, languages.sql)}
-            padding={10}
-            style={{
-              fontFamily: 'Consolas, monospace',
-              fontSize: 12,
-            }}
+            onValueChange={code => this.setState({ statement: code })}
+            highlight={code => Prism.highlight(code, Prism.languages.sql)}
+            padding={2}
           />
         </div>
-        <div className='console-command-bar'>
+        <div className='console-pane console-command-bar'>
           <button type="button" onClick={this.onExecute}>Run</button>
         </div>
-        <div className='console-result'>
+        <div className='console-pane console-result'>
           <SqlApiResultRender
             ref={this.resultRef}
             data={this.state.sqlRows} />
         </div>
-      </div>
+      </>
     );
   }
 }

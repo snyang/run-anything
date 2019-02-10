@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Editor from 'react-simple-code-editor';
-import { highlight, languages } from 'prismjs/components/prism-core';
-import 'prismjs/themes/prism.css';
-import 'prismjs/components/prism-json';
-import 'prismjs/prism.js';
 import CoreApiClient from './CoreApiClient';
 import SettingManager from '../../core/SettingManager';
 import SettingTypes from '../../core/SettingTypes';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-json';
 
 export default class ServerManagerConsoleClient extends React.Component {
   constructor(props) {
@@ -92,21 +90,16 @@ export default class ServerManagerConsoleClient extends React.Component {
   render() {
 
     return (
-      <div className='console-panel'>
-        <div className='console-editor'>
+      <div className='.console-client'>
+        <div className='console-pane console-editor'>
           <Editor
             ref={this.editorRef}
             value={this.state.statement}
             onValueChange={code => this.setState({ statement: code })}
-            highlight={code => highlight(code, languages.json)}
-            padding={10}
-            style={{
-              fontFamily: 'Consolas, monospace',
-              fontSize: 12,
-            }}
+            highlight={code => Prism.highlight(code, Prism.languages.json)}
           />
         </div>
-        <div className='console-command-bar'>
+        <div className='console-pane console-command-bar'>
           <button type="button left" onClick={this.onSave}>Save</button>
           <button type="button left" onClick={this.onLoad}>Refresh</button>
           <button type="button right" onClick={this.onShutdown}>Shutdown</button>

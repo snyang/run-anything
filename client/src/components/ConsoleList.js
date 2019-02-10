@@ -1,11 +1,24 @@
 import React from 'react';
 import Console from './Console'
 
+const sampleData = [{
+  tags: [
+    {
+      type: 'extension',
+      value: 'sql'
+    },
+    {
+      type: 'server',
+      value: 'localhost'
+    }]
+}
+];
+
 class ConsoleList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.tagsArray = [];
+    this.tagsArray = sampleData;
     this.state = {
       tagsArray: this.tagsArray
     }
@@ -27,9 +40,9 @@ class ConsoleList extends React.Component {
     }
 
     return (
-      <div>
+      <>
         {consoles}
-      </div>
+      </>
     );
   }
 }

@@ -18,7 +18,7 @@ class SqlResultRender extends React.Component {
       error: PropTypes.any,
     };
   }
-  
+
   render() {
     if (this.state.error) {
       return <pre>{JSON.stringify(this.state.error, null, 2)}</pre>;
@@ -38,33 +38,33 @@ class SqlResultRender extends React.Component {
         for (let propertyName in row) {
           if (initHead === false) {
             head_tds.push(
-              <td key={propertyName}>{propertyName}</td>
+              <div key={propertyName}>{propertyName}</div>
             );
           }
           tds.push(
-            <td key={index + propertyName}>{row[propertyName]}</td>
+            <div key={index + propertyName}>{row[propertyName]}</div>
           );
         }
         tbody_trs.push(
-          <tr key={index}>{tds}</tr>
+          <div key={index}>{tds}</div>
         )
         if (initHead === false) {
           thead_trs.push(
-            <tr key={index}>{head_tds}</tr>
+            <div key={index}>{head_tds}</div>
           );
           initHead = true;
         }
       }
 
       return (
-        <table className='resultTable'>
-          <thead>
+        <div className='table'>
+          <div className='table-header'>
             {thead_trs}
-          </thead>
-          <tbody>
+          </div>
+          <div className='table-body'>
             {tbody_trs}
-          </tbody>
-        </table>
+          </div>
+        </div>
       );
     }
     return (<span />);
