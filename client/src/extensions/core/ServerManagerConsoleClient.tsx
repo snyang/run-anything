@@ -1,16 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Editor from 'react-simple-code-editor';
 import CoreApiClient from './CoreApiClient';
 import SettingManager from '../../core/SettingManager';
 import SettingTypes from '../../core/SettingTypes';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-json';
+import { ExtensionConsoleProps, ExtensionConsoleState } from '../../core/ExtensionConsoleExt'
 
-export default class ServerManagerConsoleClient extends React.Component {
+export interface State extends ExtensionConsoleState {
+  statement: string;
+}
+
+export default class ServerManagerConsoleClient extends React.Component<ExtensionConsoleProps, State> {
+  private editorRef: any = React.createRef<Editor>()
+
   constructor(props) {
     super(props);
-    this.editorRef = React.createRef();
 
     this.onLoad = this.onLoad.bind(this);
     this.onSave = this.onSave.bind(this);
@@ -19,16 +24,10 @@ export default class ServerManagerConsoleClient extends React.Component {
       context: props.context,
       statement: 'load....',
     };
-    this.onLoad();
+    this.onLoad(undefined);
   }
 
-  static get propTypes() {
-    return {
-      context: PropTypes.object,
-    };
-  }
-
-  onShutdown(e) {
+  onShutdown(e: React.MouseEvent) {
     e.preventDefault();
     let server = SettingManager.getSetting(this.state.context, SettingTypes.server);
 
@@ -47,7 +46,7 @@ export default class ServerManagerConsoleClient extends React.Component {
       });
   }
 
-  onSave(e) {
+  onSave(e: React.MouseEvent) {
     e.preventDefault();
     let server = SettingManager.getSetting(this.state.context, SettingTypes.server);
 
@@ -66,7 +65,7 @@ export default class ServerManagerConsoleClient extends React.Component {
       });
   }
 
-  onLoad(e) {
+  onLoad(e: React.MouseEvent) {
     if (e) {
       e.preventDefault();
     }

@@ -1,14 +1,28 @@
 import 'rc-dialog/assets/index.css';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // use import Dialog from 'rc-dialog'
 import Dialog from 'rc-dialog';
 import ExtensionManager from '../core/ExtensionManager';
 import SettingManager from '../core/SettingManager';
 import SettingTypes from '../core/SettingTypes';
 
-export default class AddConsole extends React.Component {
-  constructor(props) {
+export interface Props {
+  visible: boolean;
+  onSave: Function;
+}
+
+export interface State {
+  visible: boolean;
+}
+
+export default class AddConsole extends React.Component<Props, State> {
+
+  private extensionRef: React.RefObject<HTMLSelectElement> = React.createRef()
+  private serverRef: React.RefObject<HTMLSelectElement> = React.createRef();
+  private onSave: Function;
+
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -22,15 +36,7 @@ export default class AddConsole extends React.Component {
     this.serverRef = React.createRef();
   }
 
-  static get propTypes() {
-    return {
-      visible: PropTypes.bool,
-      value: PropTypes.object,
-      onSave: PropTypes.func,
-    };
-  }
-
-  onOk = (e) => {
+  onOk(e: React.MouseEvent) {
     this.setState({
       visible: false,
     });
@@ -39,19 +45,19 @@ export default class AddConsole extends React.Component {
       tags: [
         {
           type: 'extension',
-          value: this.extensionRef.current.options[this.extensionRef.current.selectedIndex].value
+          value: this.extensionRef.current!.options[this.extensionRef.current!.selectedIndex].value
         },
         {
           type: 'server',
-          value: this.serverRef.current.options[this.serverRef.current.selectedIndex].value
+          value: this.serverRef.current!.options[this.serverRef.current!.selectedIndex].value
         }
       ]
     };
-    
+
     this.onSave(value);
   }
 
-  onClose = (e) => {
+  onClose(e: React.SyntheticEvent) {
     this.setState({
       visible: false,
     });

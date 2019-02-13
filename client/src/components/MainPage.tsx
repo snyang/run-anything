@@ -4,11 +4,17 @@ import AddConsole from './AddConsole'
 import ConsoleList from './ConsoleList'
 import ThemeManager from '../styles/themes/ThemeManager';
 
-class MainPage extends React.Component {
+export interface State {
+  showAddConsole: boolean;
+  Consoles: any[];
+}
 
-  constructor(props) {
+class MainPage extends React.Component<Object, State> {
+  addConsoleRef = React.createRef<AddConsole>();
+  consoleListRef = React.createRef<ConsoleList>();
+
+  constructor(props: Object) {
     super(props);
-    this.addConsoleRef = React.createRef();
     this.handleClick = this.handleClick.bind(this);
     // this.onTheme = this.onTheme.bind(this);
     this.onAddConsole = this.onAddConsole.bind(this);
@@ -20,32 +26,31 @@ class MainPage extends React.Component {
       ]
     }
 
-    this.consoleListRef = React.createRef();
   }
 
-  handleClick(e) {
+  handleClick(e: React.MouseEvent) {
     e.preventDefault();
-    alert(e.currentTarget.innerText)
+    alert((e.currentTarget as HTMLElement).innerText);
   }
 
-  onTheme(name) {
+  onTheme(name: string) {
     ThemeManager.onTheme(name);
   }
 
-  handleClick_EditSetting(e) {
+  handleClick_EditSetting(e: React.MouseEvent) {
     e.preventDefault();
-    alert(e.currentTarget.innerText)
+    alert((e.currentTarget as HTMLElement).innerText);
   }
 
-  onAddConsole(e) {
+  onAddConsole(e: React.MouseEvent) {
     e.preventDefault();
-    this.addConsoleRef.current.setState({
+    this.addConsoleRef.current!.setState({
       visible: true
     })
   }
 
-  onAddConsoleSave(value) {
-    this.consoleListRef.current.addConsole(value);
+  onAddConsoleSave(value: any) {
+    this.consoleListRef.current!.addConsole(value);
   }
 
   render() {

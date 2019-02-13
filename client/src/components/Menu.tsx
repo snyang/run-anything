@@ -1,8 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-class Menu extends React.Component {
-  constructor(props) {
+export interface Props {
+  handleClick?: (e: React.MouseEvent) => void;
+  onTheme: (e: string) => void;
+  onAddConsole: (e: React.MouseEvent) => void;
+  onEditSetting?: (e: React.MouseEvent) => void;
+}
+
+export interface State {
+  handleClick?: (e: React.MouseEvent) => void;
+  onTheme: (e: string) => void;
+  onAddConsole: (e: React.MouseEvent) => void;
+  onEditSetting?: (e: React.MouseEvent) => void;
+}
+
+export default class Menu extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state =
       {
@@ -15,18 +28,9 @@ class Menu extends React.Component {
     this.onTheme = this.onTheme.bind(this);
   }
 
-  static get propTypes() {
-    return {
-      handleClick: PropTypes.func,
-      onTheme: PropTypes.func,
-      onAddConsole: PropTypes.func,
-      onEditSetting: PropTypes.func
-    };
-  }
-
-  onTheme(e) {
+  onTheme(e: React.MouseEvent) {
     e.preventDefault();
-    this.state.onTheme(e.currentTarget.innerText)
+    this.state.onTheme((e.currentTarget as HTMLDivElement).innerText)
   }
 
   render() {
@@ -48,5 +52,3 @@ class Menu extends React.Component {
     );
   }
 }
-
-export default Menu;

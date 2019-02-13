@@ -3,12 +3,13 @@ import CoreEntry from './extensions/core/CoreEntry';
 import SqlEntry from './extensions/sql/SqlEntry';
 // end extension entries
 
+import BaseExtensionEntry from './core/BaseExtensionEntry';
 import SettingTypes from './core/SettingTypes';
 
 // const path = require('path');
 
 export default class AppConfig {
-  static _entries = [
+  static _entries: BaseExtensionEntry[] = [
     CoreEntry,
     SqlEntry
   ];
@@ -27,25 +28,7 @@ export default class AppConfig {
     ]
   }
 
-  // static _serverSetting = {
-  //   types: ['db'],
-  //   name: 'localhost',
-  //   properties: [
-  //     { name: 'localhost' }
-  //   ],
-  //   settings: [
-  //     {
-  //       name: 'sqlite db',
-  //       type: 'db',
-  //       value: {
-  //         type: "sqlite",
-  //         database: path.join(__dirname, '..', '..', 'test', 'data', 'sqlite.db')
-  //       }
-  //     }
-  //   ]
-  // }
-
-  static getExtensionEntries() {
+  static getExtensionEntries(): BaseExtensionEntry[] {
     return this._entries;
   }
 

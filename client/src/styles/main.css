@@ -125,7 +125,7 @@
   background-color: var(--lightgray-color);
 }
 
-.tag-close,
+.tag-close :hover,
 .tag-add :hover {
   background-color: var(--gray-color);
 }

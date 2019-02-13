@@ -14,17 +14,21 @@ const sampleData = [{
 }
 ];
 
-class ConsoleList extends React.Component {
-  constructor(props) {
+export interface State {
+  tagsArray: any;
+}
+
+class ConsoleList extends React.Component<Object, State> {
+  private tagsArray = sampleData;
+  constructor(props: Object) {
     super(props);
 
-    this.tagsArray = sampleData;
     this.state = {
       tagsArray: this.tagsArray
     }
   }
 
-  addConsole(tags) {
+  addConsole(tags: any) {
 
     this.tagsArray.push(tags);
     this.setState(
@@ -33,6 +37,7 @@ class ConsoleList extends React.Component {
       }
     );
   }
+
   render() {
     let consoles = [];
     for (let i = 0; i < this.state.tagsArray.length; i++) {

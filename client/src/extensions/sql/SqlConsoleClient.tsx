@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Editor from 'react-simple-code-editor';
 import SqlApiClient from './SqlApiClient';
-import SqlApiResultRender from './SqlApiResultRender'
+import SqlApiResultRender from './SqlResultRender'
 import SettingManager from '../../core/SettingManager';
 import SettingTypes from '../../core/SettingTypes';
 import ExecuteBody from './model/ExecuteBody'
@@ -10,16 +10,24 @@ import ExecuteBody from './model/ExecuteBody'
 import Prism from 'prismjs';
 import 'prismjs/components/prism-sql';
 
-const statement = `SELECT * 
+import { ExtensionConsoleProps, ExtensionConsoleState } from '../../core/ExtensionConsoleExt'
+
+export interface State extends ExtensionConsoleState {
+  statement: string;
+  sqlRows: any[];
+}
+
+const statement: string = `SELECT * 
 FROM Contacts 
 WHERE true;
 `;
 
-class SqlConsoleClient extends React.Component {
+export default class SqlConsoleClient extends React.Component<ExtensionConsoleProps, State> {
+  private editorRef: any = React.createRef<Editor>();  // tricky to use any
+  private resultRef = React.createRef<SqlApiResultRender>();
+
   constructor(props) {
     super(props);
-    this.editorRef = React.createRef();
-    this.resultRef = React.createRef();
     this.onExecute = this.onExecute.bind(this);
     this.state = {
       context: props.context,
@@ -89,5 +97,3 @@ class SqlConsoleClient extends React.Component {
     );
   }
 }
-
-export default SqlConsoleClient;

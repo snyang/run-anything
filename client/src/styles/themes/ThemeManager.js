@@ -59,23 +59,23 @@ export default class ThemeManager {
 
   static onPinkTheme() {
     document.body.style.setProperty("--dark-color", "MediumVioletRed ");
-    document.body.style.setProperty("--gray-color", "DeepPink");
+    document.body.style.setProperty("--gray-color", "HotPink");
     document.body.style.setProperty("--lightgray-color", "LightPink");
     document.body.style.setProperty("--light-color", "LavenderBlush");
     document.body.style.setProperty("--font-color", "MediumVioletRed ");
   }
 
   static onOrangeTheme() {
-    document.body.style.setProperty("--dark-color", "DarkOrange ");
-    document.body.style.setProperty("--gray-color", "Tomato");
+    document.body.style.setProperty("--dark-color", "OrangeRed ");
+    document.body.style.setProperty("--gray-color", "Coral");
     document.body.style.setProperty("--lightgray-color", "LightSalmon");
     document.body.style.setProperty("--light-color", "Seashell");
-    document.body.style.setProperty("--font-color", "DarkOrange ");
+    document.body.style.setProperty("--font-color", "OrangeRed ");
   }
 
   static onYellowTheme() {
     document.body.style.setProperty("--dark-color", "DarkKhaki ");
-    document.body.style.setProperty("--gray-color", "Gold");
+    document.body.style.setProperty("--gray-color", "Khaki");
     document.body.style.setProperty("--lightgray-color", "LightYellow");
     document.body.style.setProperty("--light-color", "Ivory");
     document.body.style.setProperty("--font-color", "DarkKhaki ");
@@ -83,7 +83,7 @@ export default class ThemeManager {
 
   static onPurpleTheme() {
     document.body.style.setProperty("--dark-color", "DarkSlateBlue ");
-    document.body.style.setProperty("--gray-color", "DarkViolet");
+    document.body.style.setProperty("--gray-color", "Thistle");
     document.body.style.setProperty("--lightgray-color", "Lavender");
     document.body.style.setProperty("--light-color", "AliceBlue");
     document.body.style.setProperty("--font-color", "DarkSlateBlue ");
@@ -92,7 +92,7 @@ export default class ThemeManager {
 
   static onGreenTheme() {
     document.body.style.setProperty("--dark-color", "DarkGreen ");
-    document.body.style.setProperty("--gray-color", "SeaGreen");
+    document.body.style.setProperty("--gray-color", "MediumSpringGreen");
     document.body.style.setProperty("--lightgray-color", "PaleGreen");
     document.body.style.setProperty("--light-color", "Honeydew");
     document.body.style.setProperty("--font-color", "DarkGreen ");

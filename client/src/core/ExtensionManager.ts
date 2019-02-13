@@ -1,7 +1,8 @@
 import AppConfig from '../AppConfig';
+import ExtensionInfo from './ExtensionInfo';
 
 class ExtensionManager {
-  static _extensions = [];
+  static _extensions: ExtensionInfo[] = [];
 
   static loadExtensions() {
     if (this._extensions.length > 0) {
@@ -9,13 +10,13 @@ class ExtensionManager {
     }
 
     AppConfig.getExtensionEntries().forEach(
-      (extension) => {
-        let info = extension.getExtensionInfo();
+      (entry) => {
+        let info: ExtensionInfo = entry.getExtensionInfo();
         this._extensions.push(info);
       });
   }
 
-  static getExtension(name) {
+  static getExtension(name: string) {
     this.loadExtensions();
     for (const extension of this._extensions) {
       if (extension.getName() === name) {
@@ -27,7 +28,7 @@ class ExtensionManager {
     return undefined;
   }
 
-  static getExtensions() {
+  static getExtensions(): ExtensionInfo[] {
     this.loadExtensions();
     return this._extensions;
   }

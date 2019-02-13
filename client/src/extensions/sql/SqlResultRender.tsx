@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class SqlResultRender extends React.Component {
+export interface Props {
+  data: any;
+}
 
-  /**
-   * 
-   * @param {data: 'rows array', error: 'error message'} props 
-   */
+export interface State {
+  data: any;
+  error?: object;
+}
+
+class SqlResultRender extends React.Component<Props, State> {
+
   constructor(props) {
     super(props);
     this.state = { data: props.data };

@@ -1,8 +1,8 @@
-const request = require('request');
+import * as request from 'request';
 
 export default class RestClient {
 
-  static async get(path) {
+  static async get(path: string) {
 
     return new Promise((resolve, reject) => {
       request.get(
@@ -27,12 +27,12 @@ export default class RestClient {
           reject(response === undefined ? undefined : response.toJSON());
         })
         .on('error', function (error) {
-          this._onError(error, reject);
+          RestClient._onError(error, reject);
         })
     });
   }
 
-  static async put(path, body) {
+  static async put(path: string, body: object) {
 
     return new Promise((resolve, reject) => {
       request.put(
@@ -45,15 +45,15 @@ export default class RestClient {
           },
         },
         (error, response, responseBody) => {
-          this._onResponse(error, response, responseBody, resolve, reject);
+          RestClient._onResponse(error, response, responseBody, resolve, reject);
         })
         .on('error', function (error) {
-          this._onError(error, reject);
+          RestClient._onError(error, reject);
         })
     });
   }
 
-  static async post(path, body) {
+  static async post(path: string, body: object) {
 
     return new Promise((resolve, reject) => {
       request.post(
@@ -66,15 +66,15 @@ export default class RestClient {
           },
         },
         (error, response, responseBody) => {
-          this._onResponse(error, response, responseBody, resolve, reject);
+          RestClient._onResponse(error, response, responseBody, resolve, reject);
         })
         .on('error', function (error) {
-          this._onError(error, reject);
+          RestClient._onError(error, reject);
         })
     });
   }
 
-  static async delete(path) {
+  static async delete(path: string) {
 
     return new Promise((resolve, reject) => {
       request.delete(
@@ -87,43 +87,21 @@ export default class RestClient {
           },
         },
         (error, response, responseBody) => {
-          this._onResponse(error, response, responseBody, resolve, reject);
+          RestClient._onResponse(error, response, responseBody, resolve, reject);
         })
         .on('error', function (error) {
-          this._onError(error, reject);
+          RestClient._onError(error, reject);
         })
     });
   }
 
-  static async delete2(path) {
-
-    return this._request((resolve, reject) => {
-      request.delete(
-        {
-          url: path,
-          body: undefined,
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          },
-        },
-        (error, response, responseBody) => {
-          this._onResponse(error, response, responseBody, resolve, reject);
-        });
-    });
-  }
-
-  static _request(requestFunction) {
-    return new Promise((resolve, reject) => {
-      requestFunction(resolve, reject)
-        .on('error', function (error) {
-          this._onError(error, reject);
-        })
-    });
-  }
-
-  static _onResponse(error, response, responseBody, resolve, reject) {
-    // when error, always reject objects
+  static _onResponse(error: any,
+    response: request.Response,
+    responseBody: string,
+    resolve: (result: any) => any,
+    reject: (error: any) => any) {
+    
+      // when error, always reject objects
     if (error) {
       reject({ message: error.message });
       return;
@@ -136,7 +114,7 @@ export default class RestClient {
     reject(response === undefined ? undefined : response.toJSON());
   }
 
-  static _onError(error, reject) {
+  static _onError(error: any, reject: (error: any) => any) {
     reject(error);
   }
 

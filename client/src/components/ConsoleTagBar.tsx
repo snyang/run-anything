@@ -1,8 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class ConsoleTagBar extends React.Component {
-  constructor(props) {
+export interface Props {
+  context: any;
+  onClosePanel: Function;
+}
+
+export interface State {
+  context: any;
+}
+class ConsoleTagBar extends React.Component<Props, State> {
+  onCloseParentPanel: Function;
+  constructor(props: Props) {
     super(props);
     this.state = {
       context: props.context,
@@ -18,7 +27,7 @@ class ConsoleTagBar extends React.Component {
     };
   }
 
-  onClosePanel(e) {
+  onClosePanel(e: React.MouseEvent) {
     e.preventDefault();
     this.onCloseParentPanel();
   }
