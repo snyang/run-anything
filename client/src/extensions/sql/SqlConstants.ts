@@ -2,6 +2,7 @@ import SettingTypes from '../../core/SettingTypes';
 
 export default class EntryConstants {
   static get entryName() { return 'sql'; }
+  static get extensionQueryName() { return 'sql.query'; }
   static get settingTypeDb() { return SettingTypes.db; }
 }
 

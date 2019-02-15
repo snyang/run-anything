@@ -1,6 +1,7 @@
 import React from 'react';
 import SettingManager from '../core/SettingManager';
-import { ExtensionConsoleProps, ExtensionConsoleState } from '../core/ExtensionConsoleExt'
+import ExtensionConsoleProps from '../core/ExtensionConsoleProps';
+import ExtensionConsoleState from '../core/ExtensionConsoleState';
 
 export default class ConsoleClient extends React.Component<ExtensionConsoleProps, ExtensionConsoleState> {
   constructor(props: ExtensionConsoleProps) {

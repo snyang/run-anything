@@ -1,16 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Editor from 'react-simple-code-editor';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-sql';
 import SqlApiClient from './SqlApiClient';
 import SqlApiResultRender from './SqlResultRender'
 import SettingManager from '../../core/SettingManager';
 import SettingTypes from '../../core/SettingTypes';
 import ExecuteBody from './model/ExecuteBody'
 
-import Prism from 'prismjs';
-import 'prismjs/components/prism-sql';
-
-import { ExtensionConsoleProps, ExtensionConsoleState } from '../../core/ExtensionConsoleExt'
+import ExtensionConsoleProps from '../../core/ExtensionConsoleProps';
+import ExtensionConsoleState from '../../core/ExtensionConsoleState';
 
 export interface State extends ExtensionConsoleState {
   statement: string;
@@ -33,12 +32,6 @@ export default class SqlConsoleClient extends React.Component<ExtensionConsolePr
       context: props.context,
       statement: statement,
       sqlRows: []
-    };
-  }
-
-  static get propTypes() {
-    return {
-      context: PropTypes.object,
     };
   }
 

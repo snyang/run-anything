@@ -5,7 +5,7 @@ const sampleData = [{
   tags: [
     {
       type: 'extension',
-      value: 'sql'
+      value: 'sql:query'
     },
     {
       type: 'server',

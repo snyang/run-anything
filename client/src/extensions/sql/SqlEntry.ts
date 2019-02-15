@@ -6,14 +6,15 @@ import BaseExtensionEntry from '../../core/BaseExtensionEntry';
 
 export default class SqlEntry extends BaseExtensionEntry {
   static _name: string = SqlConstants.entryName;
-  static _extensionInfo? : ExtensionInfo = undefined;
 
-  static getExtensionInfo() {
-    if (this._extensionInfo === undefined) {
-      this._extensionInfo = new ExtensionInfo(this._name, SqlConsoleClient);
-      this._extensionInfo!.RequiredClientSettingTypes = [SettingTypes.server];
-      this._extensionInfo!.RequiredServerSettingTypes = [SqlConstants.settingTypeDb];
+  static _extensions: ExtensionInfo[] = [];
+
+  static getExtensionsInfo() {
+    if (this._extensions.length === 0) {
+      let info = new ExtensionInfo(SqlConstants.extensionQueryName, 'SQL: Query', SqlConsoleClient);
+      info.RequiredClientSettingTypes = [SettingTypes.server];
+      this._extensions.push();
     }
-    return this._extensionInfo;
+    return this._extensions;
   }
 }

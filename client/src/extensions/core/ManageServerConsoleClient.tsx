@@ -5,21 +5,28 @@ import SettingManager from '../../core/SettingManager';
 import SettingTypes from '../../core/SettingTypes';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-json';
-import { ExtensionConsoleProps, ExtensionConsoleState } from '../../core/ExtensionConsoleExt'
+import ExtensionConsoleProps from '../../core/ExtensionConsoleProps';
+import ExtensionConsoleState from '../../core/ExtensionConsoleState';
+import EntryConstants from './CoreConstants';
 
 export interface State extends ExtensionConsoleState {
   statement: string;
 }
 
-export default class ServerManagerConsoleClient extends React.Component<ExtensionConsoleProps, State> {
+export default class ManageServerConsoleClient extends React.Component<ExtensionConsoleProps, State> {
   private editorRef: any = React.createRef<Editor>()
-
+  private forHost: boolean;
   constructor(props) {
     super(props);
 
     this.onLoad = this.onLoad.bind(this);
     this.onSave = this.onSave.bind(this);
     this.onShutdown = this.onShutdown.bind(this);
+
+    // check whether it is a request of the host server
+    let extension = SettingManager.getSetting(this.state.context, SettingTypes.extension);
+    this.forHost = (extension.name === EntryConstants.extensionManageHost);
+
     this.state = {
       context: props.context,
       statement: 'load....',
@@ -55,20 +62,34 @@ export default class ServerManagerConsoleClient extends React.Component<Extensio
       return;
     }
 
-    new CoreApiClient(`${server.hostUrl}`)
-      .updateSettings(this.editorRef.current.props.value)
-      .then((response) => {
-        alert('Saved.');
-      })
-      .catch((error) => {
-        alert(JSON.stringify(error));
-      });
+    if (this.forHost) {
+      new CoreApiClient(`${server.hostUrl}`)
+        .updateSettings(this.editorRef.current.props.value)
+        .then((response) => {
+          alert('Saved.');
+        })
+        .catch((error) => {
+          alert(JSON.stringify(error));
+        });
+    }
+    else {
+      new CoreApiClient(`${server.hostUrl}`)
+        .updateServerSettings(this.editorRef.current.props.value)
+        .then((response) => {
+          alert('Saved.');
+        })
+        .catch((error) => {
+          alert(JSON.stringify(error));
+        });
+
+    }
   }
 
   onLoad(e: React.MouseEvent) {
     if (e) {
       e.preventDefault();
     }
+
     let server = SettingManager.getSetting(this.state.context, SettingTypes.server);
 
     if (server === undefined) {
@@ -76,14 +97,26 @@ export default class ServerManagerConsoleClient extends React.Component<Extensio
       return;
     }
 
-    new CoreApiClient(`${server.hostUrl}`)
-      .getSettings()
-      .then((response) => {
-        this.setState({ statement: JSON.stringify(response, null, 2) })
-      })
-      .catch((error) => {
-        alert(JSON.stringify(error));
-      });
+    if (this.forHost) {
+      new CoreApiClient(`${server.hostUrl}`)
+        .getSettings()
+        .then((response) => {
+          this.setState({ statement: JSON.stringify(response, null, 2) })
+        })
+        .catch((error) => {
+          alert(JSON.stringify(error));
+        });
+    }
+    else {
+      new CoreApiClient(`${server.hostUrl}`)
+        .getServerSettings()
+        .then((response) => {
+          this.setState({ statement: JSON.stringify(response, null, 2) })
+        })
+        .catch((error) => {
+          alert(JSON.stringify(error));
+        });
+    }
   }
 
   render() {

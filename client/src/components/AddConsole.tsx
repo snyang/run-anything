@@ -37,6 +37,7 @@ export default class AddConsole extends React.Component<Props, State> {
   }
 
   onOk(e: React.MouseEvent) {
+    e.preventDefault();
     this.setState({
       visible: false,
     });
@@ -58,6 +59,7 @@ export default class AddConsole extends React.Component<Props, State> {
   }
 
   onClose(e: React.SyntheticEvent) {
+    e.preventDefault();
     this.setState({
       visible: false,
     });
@@ -96,7 +98,7 @@ export default class AddConsole extends React.Component<Props, State> {
           <div className='table'>
             <div>
               <div>
-                <label>Type:</label>
+                <label>Function:</label>
               </div>
               <div>
                 <select ref={this.extensionRef}>

@@ -6,8 +6,6 @@ import SqlEntry from './extensions/sql/SqlEntry';
 import BaseExtensionEntry from './core/BaseExtensionEntry';
 import SettingTypes from './core/SettingTypes';
 
-// const path = require('path');
-
 export default class AppConfig {
   static _entries: BaseExtensionEntry[] = [
     CoreEntry,
@@ -21,8 +19,8 @@ export default class AppConfig {
         type: SettingTypes.server,
         value:
         {
-          name: 'localhost',
-          hostUrl: 'http://localhost:9000',
+          hostUrl: 'http://localhost:3000',
+          isHost: true,
         },
       },
     ]

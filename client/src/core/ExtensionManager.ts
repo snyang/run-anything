@@ -11,15 +11,16 @@ class ExtensionManager {
 
     AppConfig.getExtensionEntries().forEach(
       (entry) => {
-        let info: ExtensionInfo = entry.getExtensionInfo();
-        this._extensions.push(info);
+        for (let info of entry.getExtensionsInfo()) {
+          this._extensions.push(info);
+        }
       });
   }
 
   static getExtension(name: string) {
     this.loadExtensions();
     for (const extension of this._extensions) {
-      if (extension.getName() === name) {
+      if (extension.Name === name) {
         return extension;
       }
     }

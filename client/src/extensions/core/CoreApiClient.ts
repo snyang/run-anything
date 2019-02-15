@@ -24,4 +24,14 @@ export default class SqlRestClient {
     let result = await RestClient.put(`${this._hostUrl}${ApiConstants.SettingsPath}`, new SettingsBody(body));
     return result;
   }
+
+  async getServerSettings() {
+    let result = await RestClient.get(`${this._hostUrl}${ApiConstants.SettingsPath}`);
+    return SettingsBody.parse(result).getContent();
+  }
+
+  async updateServerSettings(body) {
+    let result = await RestClient.put(`${this._hostUrl}${ApiConstants.SettingsPath}`, new SettingsBody(body));
+    return result;
+  }
 }

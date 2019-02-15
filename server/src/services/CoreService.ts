@@ -12,15 +12,21 @@ export class CoreService implements IService {
     application.delete('/api/core/action/shutdown', this.shutdown)
 
     // GET settings
-    application.get('/api/core/settings', this.getSettings);
+    application.get('/api/core/settings/host', this.getSettings);
 
     // PUT settings(body)
-    application.put('/api/core/settings', this.putSettings);
+    application.put('/api/core/settings/host', this.putSettings);
+
+    // GET server settings
+    application.get('/api/core/server/settings/server', this.getServerSettings);
+
+    // PUT server settings(body)
+    application.put('/api/core/server/settings/server', this.putServerSettings);
 
   }
 
   getSettings(request: Request, response: Response) {
-    let settingFilePath = path.join(__dirname, '..', ServerConstants.ServerSettingFilePath);
+    let settingFilePath = path.join(__dirname, '..', ServerConstants.SettingFilePath);
     let settingJson = {};
     if (fs.existsSync(settingFilePath)) {
       settingJson = { json: JSON.parse(fs.readFileSync(settingFilePath, 'utf8')) };
@@ -29,6 +35,21 @@ export class CoreService implements IService {
   }
 
   putSettings(request: Request, response: Response) {
+    let settingFilePath = path.join(__dirname, '..', ServerConstants.SettingFilePath);
+    fs.writeFileSync(settingFilePath, request.body.json, { encoding: 'utf8' });
+    response.status(200).json(null);
+  }
+
+  getServerSettings(request: Request, response: Response) {
+    let settingFilePath = path.join(__dirname, '..', ServerConstants.ServerSettingFilePath);
+    let settingJson = {};
+    if (fs.existsSync(settingFilePath)) {
+      settingJson = { json: JSON.parse(fs.readFileSync(settingFilePath, 'utf8')) };
+    }
+    response.json(settingJson);
+  }
+
+  putServerSettings(request: Request, response: Response) {
     let settingFilePath = path.join(__dirname, '..', ServerConstants.ServerSettingFilePath);
     fs.writeFileSync(settingFilePath, request.body.json, { encoding: 'utf8' });
     response.status(200).json(null);
