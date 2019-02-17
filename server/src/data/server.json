@@ -10,7 +10,7 @@
       "type": "db",
       "value": {
         "type": "sqlite",
-        "database": "../../test/data/sqlite.db"
+        "database": "/home/steven/Projects/run-anything/server/test/data/sqlite.db"
       }
     }
   ]

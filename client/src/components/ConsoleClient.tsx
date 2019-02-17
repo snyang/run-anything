@@ -12,7 +12,7 @@ export default class ConsoleClient extends React.Component<ExtensionConsoleProps
   }
 
   render() {
-    let Client = SettingManager.getExtensionInfo(this.state.context).getConsole();
+    let Client = SettingManager.getExtensionInfo(this.state.context).Console;
     return (
       <Client context={this.state.context} />
     );

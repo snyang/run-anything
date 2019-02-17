@@ -10,10 +10,6 @@
       "items": {
         "type": "object",
         "properties": {
-          "name": {
-            "description": "property name(properties[].name)",
-            "type": "string"
-          },
           "type": {
             "description": "property type(properties[].type)",
             "anyOf": [
@@ -28,6 +24,10 @@
                 "type": "string"
               }
             ]
+          },
+          "name": {
+            "description": "property name(properties[].name)",
+            "type": "string"
           },
           "value": {
             "description": "property value(properties[].value)",
@@ -62,6 +62,10 @@
               {
                 "description": "other values",
                 "type": "object"
+              },
+              {
+                "description": "other values",
+                "type": "string"
               }
             ]
           }

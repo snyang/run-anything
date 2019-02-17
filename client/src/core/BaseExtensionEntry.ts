@@ -1,7 +1,7 @@
 import ExtensionInfo from "./ExtensionInfo";
 
 export default class BaseExtensionEntry {
-  getExtensionsInfo(): ExtensionInfo[] {
+  getExtensions(): ExtensionInfo[] {
     throw new Error('Not implemented');
   }
 }

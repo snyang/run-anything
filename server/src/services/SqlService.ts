@@ -1,9 +1,10 @@
 import { Application, Request, Response } from 'express';
-import path = require('path');
 import { IService } from './IService';
 import { TypeOrmService } from '../db/TypeOrmService';
+import SettingManager from '../core/SettingManager';
 
-const RootPath = '/api/sql'
+const RootPath = '/api/sql';
+const type_db = 'db';
 
 export class SqlService implements IService {
   attach(application: Application) {
@@ -11,15 +12,18 @@ export class SqlService implements IService {
   }
 
   async execute(request: Request, response: Response) {
-    let service = new TypeOrmService({
-      type: "sqlite",
-      database: path.join(__dirname, '..', '..', '..', 'test', 'data', 'sqlite.db')
-    })
+    let dbSetting = SettingManager.getSetting(request.body.context, type_db);
+    if (dbSetting === undefined) {
+      throw new Error('cannot find db setting.');
+    }
+    
+    let service = new TypeOrmService(dbSetting);
+    
     try {
       if (!request.is('application/json')) {
-        throw "please post body in 'Content-Type: application/json'.";
+        throw new Error("please post body in 'Content-Type: application/json'.");
       }
-      let result = await service.query(request.body.sql);
+      let result = await service.query(request.body.statement);
       response.json({ rows: result });
     } catch (error) {
       // use error object

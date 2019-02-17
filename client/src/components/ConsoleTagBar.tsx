@@ -43,7 +43,6 @@ class ConsoleTagBar extends React.Component<Props, State> {
       <div className='console-pane tag-bar'>
         <div className='tag-add left'>+</div>
         {tagControls}
-        <div className='right' onClick={this.onClosePanel}>X</div>
       </div>
     );
   }

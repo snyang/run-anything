@@ -1,11 +1,13 @@
 import React from 'react';
 import Console from './Console'
+import SettingManager from '../core/SettingManager';
+import SettingTypes from '../core/SettingTypes';
 
 const sampleData = [{
   tags: [
     {
       type: 'extension',
-      value: 'sql:query'
+      value: 'sql.query'
     },
     {
       type: 'server',
@@ -15,38 +17,42 @@ const sampleData = [{
 ];
 
 export interface State {
-  tagsArray: any;
+  consoles: any;
 }
 
 class ConsoleList extends React.Component<Object, State> {
   private tagsArray = sampleData;
+
   constructor(props: Object) {
     super(props);
 
     this.state = {
-      tagsArray: this.tagsArray
-    }
+      consoles: [],
+    };
+    // this.addConsole(sampleData);
   }
 
   addConsole(tags: any) {
-
+    this.tagsArray = [];
     this.tagsArray.push(tags);
+    let consoles = [];
+    for (let i = 0; i < this.tagsArray.length; i++) {
+      let extensionName = SettingManager.getContextSetting(this.tagsArray[i], SettingTypes.extension);
+      consoles.push(<Console key={extensionName} tags={this.tagsArray[i].tags} />)
+    }
     this.setState(
       {
-        tagsArray: this.tagsArray
+        consoles: consoles,
       }
     );
   }
 
   render() {
-    let consoles = [];
-    for (let i = 0; i < this.state.tagsArray.length; i++) {
-      consoles.push(<Console key={i} tags={this.state.tagsArray[i].tags} />)
-    }
+
 
     return (
       <>
-        {consoles}
+        {this.state.consoles}
       </>
     );
   }

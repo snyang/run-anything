@@ -1,14 +1,20 @@
 export default class ExecuteBody {
 
-  private sql: string;
-  constructor(sql) {
-    this.sql = sql;
+  private context: object;
+  private statement: string;
+  constructor(context: object, statement: string) {
+    this.context = context;
+    this.statement = statement;
   }
 
-  getSql() {
-    return this.sql;
+  getContext() {
+    return this.context;
   }
   
+  getStatement() {
+    return this.statement;
+  }
+
   getJson() {
     return JSON.stringify(this);
   }

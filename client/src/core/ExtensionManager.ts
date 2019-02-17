@@ -9,23 +9,21 @@ class ExtensionManager {
       return;
     }
 
-    AppConfig.getExtensionEntries().forEach(
-      (entry) => {
-        for (let info of entry.getExtensionsInfo()) {
-          this._extensions.push(info);
-        }
-      });
+    for (let entry of AppConfig.extensionEntries) {
+      for (let info of entry.getExtensions()) {
+        this._extensions.push(info);
+      }
+    }
   }
 
   static getExtension(name: string) {
     this.loadExtensions();
     for (const extension of this._extensions) {
-      if (extension.Name === name) {
+      if (extension.name === name) {
         return extension;
       }
     }
 
-    alert('here')
     return undefined;
   }
 

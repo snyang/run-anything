@@ -15,7 +15,7 @@ class MainPage extends React.Component<Object, State> {
 
   constructor(props: Object) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+  
     // this.onTheme = this.onTheme.bind(this);
     this.onAddConsole = this.onAddConsole.bind(this);
     this.onAddConsoleSave = this.onAddConsoleSave.bind(this);
@@ -28,18 +28,8 @@ class MainPage extends React.Component<Object, State> {
 
   }
 
-  handleClick(e: React.MouseEvent) {
-    e.preventDefault();
-    alert((e.currentTarget as HTMLElement).innerText);
-  }
-
   onTheme(name: string) {
     ThemeManager.onTheme(name);
-  }
-
-  handleClick_EditSetting(e: React.MouseEvent) {
-    e.preventDefault();
-    alert((e.currentTarget as HTMLElement).innerText);
   }
 
   onAddConsole(e: React.MouseEvent) {

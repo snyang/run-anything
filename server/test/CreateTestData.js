@@ -1,4 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
 
 CreateTestData();
 
@@ -32,7 +33,7 @@ function CreateTestData() {
 }
 
 function connect(errorCallBack) {
-  let db = new sqlite3.Database('./data/sqlite.db',
+  let db = new sqlite3.Database(path.join(__dirname, 'data/sqlite.db'),
     sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE,
     errorCallBack);
   return db;

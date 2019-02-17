@@ -1,10 +1,11 @@
 import React from 'react';
 import Editor from 'react-simple-code-editor';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-json';
+
 import CoreApiClient from './CoreApiClient';
 import SettingManager from '../../core/SettingManager';
 import SettingTypes from '../../core/SettingTypes';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-json';
 import ExtensionConsoleProps from '../../core/ExtensionConsoleProps';
 import ExtensionConsoleState from '../../core/ExtensionConsoleState';
 import EntryConstants from './CoreConstants';
@@ -23,14 +24,15 @@ export default class ManageServerConsoleClient extends React.Component<Extension
     this.onSave = this.onSave.bind(this);
     this.onShutdown = this.onShutdown.bind(this);
 
-    // check whether it is a request of the host server
-    let extension = SettingManager.getSetting(this.state.context, SettingTypes.extension);
-    this.forHost = (extension.name === EntryConstants.extensionManageHost);
-
     this.state = {
       context: props.context,
       statement: 'load....',
     };
+  
+    // check whether it is a request of the host server
+    let extension = SettingManager.getContextSetting(this.state.context, SettingTypes.extension);
+    this.forHost = (extension === EntryConstants.extensionManageHost);
+  
     this.onLoad(undefined);
   }
 

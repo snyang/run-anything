@@ -9,11 +9,12 @@ export default class SqlEntry extends BaseExtensionEntry {
 
   static _extensions: ExtensionInfo[] = [];
 
-  static getExtensionsInfo() {
+  static getExtensions() {
     if (this._extensions.length === 0) {
       let info = new ExtensionInfo(SqlConstants.extensionQueryName, 'SQL: Query', SqlConsoleClient);
-      info.RequiredClientSettingTypes = [SettingTypes.server];
-      this._extensions.push();
+      info.RequiredHostSettingTypes = [SettingTypes.server];
+      info.RequiredServerSettingTypes = ['db'];
+      this._extensions.push(info);
     }
     return this._extensions;
   }

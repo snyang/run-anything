@@ -16,22 +16,22 @@ export default class SqlRestClient {
   }
 
   async getSettings() {
-    let result = await RestClient.get(`${this._hostUrl}${ApiConstants.SettingsPath}`);
+    let result = await RestClient.get(`${this._hostUrl}${ApiConstants.HostSettingsPath}`);
     return SettingsBody.parse(result).getContent();
   }
 
   async updateSettings(body) {
-    let result = await RestClient.put(`${this._hostUrl}${ApiConstants.SettingsPath}`, new SettingsBody(body));
+    let result = await RestClient.put(`${this._hostUrl}${ApiConstants.HostSettingsPath}`, new SettingsBody(body));
     return result;
   }
 
   async getServerSettings() {
-    let result = await RestClient.get(`${this._hostUrl}${ApiConstants.SettingsPath}`);
+    let result = await RestClient.get(`${this._hostUrl}${ApiConstants.ServerSettingsPath}`);
     return SettingsBody.parse(result).getContent();
   }
 
   async updateServerSettings(body) {
-    let result = await RestClient.put(`${this._hostUrl}${ApiConstants.SettingsPath}`, new SettingsBody(body));
+    let result = await RestClient.put(`${this._hostUrl}${ApiConstants.ServerSettingsPath}`, new SettingsBody(body));
     return result;
   }
 }

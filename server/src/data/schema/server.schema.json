@@ -10,12 +10,12 @@
       "items": {
         "type": "object",
         "properties": {
-          "name": {
-            "description": "property name(properties[].name)",
-            "type": "string"
-          },
           "type": {
             "description": "property name(properties[].type)",
+            "type": "string"
+          },
+          "name": {
+            "description": "property name(properties[].name)",
             "type": "string"
           },
           "value": {

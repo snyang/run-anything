@@ -2,16 +2,13 @@
 
 ## Concepts
 
+- Host
+  The host of the HTML application, that is used to store the application settings, e.g. servers information.
+
 - Server
-  The information of the server to which this application is deployed.
+  The server which the HTML application can connect.
 
-- PropertySet
-  {name, description, properties[]}
-  Properties which are related to the server environment, would be used by executors.
-
-- Property
-  {name, description, value}
-  A property and its value
+- Host Settings/Server Settings/Context
 
 - User
   The running user information

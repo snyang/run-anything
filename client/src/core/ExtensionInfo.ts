@@ -5,7 +5,7 @@ export default class ExtensionInfo {
   private _name: string;
   private _information: string;
   private _console: React.ComponentClass<ExtensionConsoleProps, ExtensionConsoleState>;
-  private _requiredClientSettingTypes: string[];
+  private _requiredHostSettingTypes: string[];
   private _requiredServerSettingTypes: string[];
 
   constructor(name: string,
@@ -15,11 +15,11 @@ export default class ExtensionInfo {
     this._name = name;
     this._information = information;
     this._console = console;
-    this._requiredClientSettingTypes = ['server'];
+    this._requiredHostSettingTypes = ['server'];
     this._requiredServerSettingTypes = [];
   }
 
-  get Name() {
+  get name() {
     return this._name;
   }
   get Information() {
@@ -30,12 +30,12 @@ export default class ExtensionInfo {
     return this._console;
   }
 
-  get RequiredClientSettingTypes() {
-    return this._requiredClientSettingTypes;
+  get RequiredHostSettingTypes() {
+    return this._requiredHostSettingTypes;
   }
 
-  set RequiredClientSettingTypes(value: string[]) {
-    this._requiredClientSettingTypes = value;
+  set RequiredHostSettingTypes(value: string[]) {
+    this._requiredHostSettingTypes = value;
   }
 
   get RequiredServerSettingTypes() {

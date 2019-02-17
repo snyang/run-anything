@@ -49,7 +49,7 @@ export default class SqlConsoleClient extends React.Component<ExtensionConsolePr
     }
 
     new SqlApiClient(`${server.hostUrl}`)
-      .execute(new ExecuteBody(this.editorRef.current.props.value))
+      .execute(new ExecuteBody(this.state.context, this.editorRef.current.props.value))
       .then((response) => {
         that.resultRef.current.setState(
           {

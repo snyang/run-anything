@@ -1,4 +1,4 @@
-import AppConfig from '../AppConfig';
+import ApplicationContext from './ApplicationContext';
 import SettingTypes from './SettingTypes';
 import ExtensionManager from './ExtensionManager';
 import ExtensionInfo from './ExtensionInfo';
@@ -11,16 +11,22 @@ export interface Tag {
 export interface Context {
   tags: Tag[];
 }
+
 export default class SettingManager {
 
   static getSetting(context: Context, type: string): any {
-    let name: string | undefined = this._getContextSetting(context, type);
+    let name: string | undefined = this.getContextSetting(context, type);
     if (name === undefined) {
       return undefined;
     }
 
-    for (let index = 0; index < AppConfig._settings.properties.length; index++) {
-      let property = AppConfig._settings.properties[index];
+    return this.getTypeNameHostSetting(type, name);
+  }
+
+  static getTypeNameHostSetting(type: string, name: String): any {
+    let hostProperties = ApplicationContext.instance.hostSettings.properties;
+    for (let index = 0; index < hostProperties.length; index++) {
+      let property = hostProperties[index];
       if (property.type !== type
         || property.name !== name) {
         continue;
@@ -30,7 +36,7 @@ export default class SettingManager {
   }
 
   static getExtensionInfo(context: Context): ExtensionInfo | undefined {
-    let name: string | undefined = this._getContextSetting(context, SettingTypes.extension);
+    let name: string | undefined = this.getContextSetting(context, SettingTypes.extension);
     if (name === undefined) {
       return undefined;
     }
@@ -39,8 +45,9 @@ export default class SettingManager {
 
   static getTypeSettings(type: string) {
     let settings = [];
-    for (let index = 0; index < AppConfig._settings.properties.length; index++) {
-      let property = AppConfig._settings.properties[index];
+    let hostProperties = ApplicationContext.instance.hostSettings.properties;
+    for (let index = 0; index < hostProperties.length; index++) {
+      let property = hostProperties[index];
       if (property.type !== type) {
         continue;
       }
@@ -50,7 +57,21 @@ export default class SettingManager {
     return settings;
   }
 
-  static _getContextSetting(context: Context, type: string): string | undefined {
+  static getServerTypeSettings(serverSettings: any, type: string) {
+    let settings = [];
+    let properties = serverSettings.properties;
+    for (let index = 0; index < properties.length; index++) {
+      let property = properties[index];
+      if (property.type !== type) {
+        continue;
+      }
+      settings.push(property);
+    }
+
+    return settings;
+  }
+
+  static getContextSetting(context: Context, type: string): string | undefined {
     for (const tag of context.tags) {
       if (tag.type === type) {
         return tag.value;

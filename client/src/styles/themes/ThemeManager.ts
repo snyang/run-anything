@@ -1,5 +1,13 @@
+import ApplicationContext from "../../core/ApplicationContext";
+
+const theme_setting_name='theme';
+const theme_default='gray';
+
 export default class ThemeManager {
   static onTheme(name) {
+    if (name===undefined) {
+      name = ApplicationContext.instance.getLocalSetting(theme_setting_name, theme_default)
+    }
     switch (name) {
       case 'red':
         this.onRedTheme();
@@ -37,6 +45,8 @@ export default class ThemeManager {
         this.onGrayTheme();
         break;
     }
+
+    ApplicationContext.instance.setLocalSetting(theme_setting_name, name);
   }
 
   static onGrayTheme() {

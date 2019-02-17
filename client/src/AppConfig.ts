@@ -12,25 +12,25 @@ export default class AppConfig {
     SqlEntry
   ];
 
-  static _settings = {
+  private static _settings = {
     properties: [
       {
         name: 'localhost',
         type: SettingTypes.server,
         value:
         {
-          hostUrl: 'http://localhost:3000',
+          hostUrl: 'http://localhost:9000',
           isHost: true,
         },
       },
     ]
   }
 
-  static getExtensionEntries(): BaseExtensionEntry[] {
+  static get extensionEntries(): BaseExtensionEntry[] {
     return this._entries;
   }
 
-  static getSettings() {
+  static get Settings() {
     return this._settings;
   }
 }

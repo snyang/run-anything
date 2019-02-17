@@ -23,7 +23,8 @@
     "server"
   ],
   "scripts": {
-    "start": "npx ts-node ./src/StartServer.ts"
+    "start": "npx ts-node ./src/StartServer.ts",
+    "test-data": "npx ./test/CreateTestData.js"
   },
   "browserslist": [
     ">0.2%",

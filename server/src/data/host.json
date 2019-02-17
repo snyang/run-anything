@@ -5,7 +5,14 @@
       "type": "server",
       "name": "localhost",
       "value": {
-        "hostUrl": "http://localhost:3000"
+        "hostUrl": "http://localhost:9000"
+      }
+    },
+    {
+      "type": "theme",
+      "name": "theme",
+      "value": {
+        "theme": "brown"
       }
     }
   ]

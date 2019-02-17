@@ -8,14 +8,14 @@ export default class CoreEntry extends BaseExtensionEntry {
   static _name = EntryConstants.entryName;
   static _extensions: ExtensionInfo[] = [];
 
-  static getExtensionsInfo() {
+  static getExtensions() {
     if (this._extensions.length === 0) {
       let info = new ExtensionInfo(EntryConstants.extensionManageHost, 'Core: Manage the Host', ManageServerConsoleClient);
-      this._extensions.push();
+      this._extensions.push(info);
 
       info = new ExtensionInfo(EntryConstants.extensionManageServer, 'Core: Manage a Server', ManageServerConsoleClient);
-      info.RequiredClientSettingTypes = [SettingTypes.server];
-      this._extensions.push();
+      info.RequiredHostSettingTypes = [SettingTypes.server];
+      this._extensions.push(info);
     }
     return this._extensions;
   }
