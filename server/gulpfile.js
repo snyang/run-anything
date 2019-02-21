@@ -4,13 +4,11 @@
 const gulp = require('gulp');
 const requireDir = require('require-dir');
 
-
 // Require all tasks.
-requireDir('./gulp', { recurse: true });
+requireDir('./tasks', { recurse: true });
 
-
+// deploy the server application to the server
 gulp.task('default', gulp.series('deploy'));
-// gulp.task('default', (callback) => {
-//   // build -> 
-//   runSequence('deploy', callback);
-// });
+
+// start the remote server
+gulp.task('start-server', gulp.series('remote:start'));

@@ -38,6 +38,13 @@ export default class SqlConsoleClient extends React.Component<ExtensionConsolePr
   onExecute(e) {
     e.preventDefault();
     let that = this;
+    // clear result
+    that.resultRef.current.setState({
+      data: undefined,
+      error: { error: "query..." }
+    });
+
+    // query
     let server = SettingManager.getSetting(this.state.context, SettingTypes.server);
 
     if (server === undefined) {

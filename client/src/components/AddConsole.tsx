@@ -99,12 +99,14 @@ export default class AddConsole extends React.Component<Props, State> {
   }
 
   initHostOptions(): void {
+    this.extensionOptions=[];
     let extensions = ExtensionManager.getExtensions();
     for (let i = 0; i < extensions.length; i++) {
       let optionValue = extensions[i].name;
       this.extensionOptions.push(<option key={optionValue} value={optionValue}>{optionValue}</option>);
     }
 
+    this.serverOptions=[]
     let servers = SettingManager.getTypeSettings(SettingTypes.server);
     for (let i = 0; i < servers.length; i++) {
       let optionValue = servers[i].name;
@@ -172,7 +174,7 @@ export default class AddConsole extends React.Component<Props, State> {
   }
 
   render() {
-
+    this.initHostOptions();
     let footer = (
       <button onClick={this.onOk}>OK</button>
     );

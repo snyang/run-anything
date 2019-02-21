@@ -9,19 +9,23 @@ export default class ApplicationContext {
   static get instance(): ApplicationContext {
     if (this._instance === undefined) {
       this._instance = new ApplicationContext();
-
-      // read server settings
-      this._instance._serverSettings = {};
-      let file = path.join(__dirname, '..', ServerConstants.ServerSettingsPath);
-      if (fs.existsSync(file)) {
-        let json = fs.readFileSync(file, 'utf8');
-        console.log(json);
-        this._instance._serverSettings = JSON.parse(json);
-      }
+      this.reinitializeServerSetting();
     }
 
     return this._instance;
   }
+
+  static reinitializeServerSetting() {
+    // read server settings
+    ApplicationContext.instance._serverSettings = {};
+    let file = path.join(__dirname, '..', ServerConstants.ServerSettingsPath);
+    if (fs.existsSync(file)) {
+      let json = fs.readFileSync(file, 'utf8');
+      console.log(json);
+      ApplicationContext.instance._serverSettings = JSON.parse(json);
+    }
+  }
+
   get serverSettings() {
     return this._serverSettings;
   }

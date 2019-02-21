@@ -6,8 +6,10 @@ import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 import 'prismjs/prism.js';
 import ThemeManager from './styles/themes/ThemeManager';
+import ApplicationContext from './core/ApplicationContext';
 
 Prism.highlightAll();
+ApplicationContext.initialize();
 
 class App extends React.Component {
   constructor(props) {

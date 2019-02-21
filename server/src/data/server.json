@@ -6,7 +6,7 @@
       "value": "localhost"
     },
     {
-      "name": "sqlite db1",
+      "name": "sqlite db",
       "type": "db",
       "value": {
         "type": "sqlite",

@@ -3,16 +3,17 @@
   "properties": [
     {
       "type": "server",
-      "name": "localhost",
+      "name": "host",
       "value": {
-        "hostUrl": "http://localhost:9000"
+        "hostUrl": "http://localhost:9000",
+        "isHost": true
       }
     },
     {
-      "type": "theme",
-      "name": "theme",
+      "type": "server",
+      "name": "ynlora",
       "value": {
-        "theme": "brown"
+        "hostUrl": "http://ynlora:10108"
       }
     }
   ]

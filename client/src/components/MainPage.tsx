@@ -1,5 +1,6 @@
 import React from 'react';
-import Menu from './Menu'
+// import Math from 'math';
+import Menu from './Menu';
 import AddConsole from './AddConsole'
 import ConsoleList from './ConsoleList'
 import ThemeManager from '../styles/themes/ThemeManager';
@@ -15,7 +16,7 @@ class MainPage extends React.Component<Object, State> {
 
   constructor(props: Object) {
     super(props);
-  
+
     // this.onTheme = this.onTheme.bind(this);
     this.onAddConsole = this.onAddConsole.bind(this);
     this.onAddConsoleSave = this.onAddConsoleSave.bind(this);
@@ -44,11 +45,20 @@ class MainPage extends React.Component<Object, State> {
   }
 
   render() {
+    // let AddConsoleElement = undefined;
+    // if (this.state.showAddConsole) {
+    //   AddConsoleElement = <AddConsole
+    //     key={Math.random()}
+    //     ref={this.addConsoleRef}
+    //     visible={true}
+    //     onSave={this.onAddConsoleSave} />;
+    // }
     return (
       <>
         <AddConsole
+          key={Math.random()}
           ref={this.addConsoleRef}
-          visible={this.state.showAddConsole}
+          visible={false}
           onSave={this.onAddConsoleSave} />
         <Menu onAddConsole={this.onAddConsole} onTheme={this.onTheme} />
         <ConsoleList ref={this.consoleListRef} />

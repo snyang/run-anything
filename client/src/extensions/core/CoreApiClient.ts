@@ -2,6 +2,7 @@
 import RestClient from '../../core/RestClient';
 import { ApiConstants } from './CoreConstants';
 import SettingsBody from './model/SettingsBody';
+import ApplicationContext from '../../core/ApplicationContext';
 
 export default class SqlRestClient {
   private _hostUrl: string;
@@ -22,6 +23,7 @@ export default class SqlRestClient {
 
   async updateSettings(body) {
     let result = await RestClient.put(`${this._hostUrl}${ApiConstants.HostSettingsPath}`, new SettingsBody(body));
+    ApplicationContext.reinitialize();
     return result;
   }
 

@@ -14,7 +14,7 @@ export class SqlService implements IService {
   async execute(request: Request, response: Response) {
     let dbSetting = SettingManager.getSetting(request.body.context, type_db);
     if (dbSetting === undefined) {
-      throw new Error('cannot find db setting.');
+      Promise.reject(new Error('cannot find db setting.'));
     }
     
     let service = new TypeOrmService(dbSetting);
@@ -27,7 +27,7 @@ export class SqlService implements IService {
       response.json({ rows: result });
     } catch (error) {
       // use error object
-      response.status(500).json(error);
+      response.status(500).json(JSON.stringify(error, null, 2));
     }
   }
 }

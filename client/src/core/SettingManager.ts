@@ -71,6 +71,19 @@ export default class SettingManager {
     return settings;
   }
 
+  static getTypeNameSetting(settings: any, type: string, name: string) {
+    let properties = settings.properties;
+    for (let index = 0; index < properties.length; index++) {
+      let property = properties[index];
+      if (property.type === type
+        && property.name === name) {
+        return property.value;
+      }
+    }
+
+    return undefined;
+  }
+
   static getContextSetting(context: Context, type: string): string | undefined {
     for (const tag of context.tags) {
       if (tag.type === type) {

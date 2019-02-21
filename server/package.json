@@ -24,6 +24,7 @@
   ],
   "scripts": {
     "start": "npx ts-node ./src/StartServer.ts",
+    "gulp": "gulp",
     "test-data": "npx ./test/CreateTestData.js"
   },
   "browserslist": [
@@ -35,6 +36,12 @@
   "devDependencies": {
     "@types/express": "^4.16.1",
     "@types/node": "^10.12.21",
+    "graceful-fs": "^4.1.15",
+    "gulp": "^4.0.0",
+    "gulp-scp2": "^0.2.0",
+    "gulp-shell": "^0.6.5",
+    "gulp-ssh": "^0.7.0",
+    "require-dir": "^1.2.0",
     "ts-node": "^8.0.2",
     "typescript": "^3.3.1"
   }

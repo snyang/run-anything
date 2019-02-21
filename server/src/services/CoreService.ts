@@ -4,6 +4,7 @@ import fs = require('fs');
 import { IService } from './IService';
 import { Startup } from '../StartServer';
 import { ServerConstants } from '../core/ServerConstants';
+import ApplicationContext from '../core/ApplicationContext';
 
 export class CoreService implements IService {
 
@@ -51,7 +52,9 @@ export class CoreService implements IService {
 
   putServerSettings(request: Request, response: Response) {
     let settingFilePath = path.join(__dirname, '..', ServerConstants.ServerSettingsPath);
+    JSON.parse(request.body.json);
     fs.writeFileSync(settingFilePath, request.body.json, { encoding: 'utf8' });
+    ApplicationContext.reinitializeServerSetting();
     response.status(200).json(null);
   }
 

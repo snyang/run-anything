@@ -15,7 +15,7 @@ export default class AppConfig {
   private static _settings = {
     properties: [
       {
-        name: 'localhost',
+        name: 'host',
         type: SettingTypes.server,
         value:
         {

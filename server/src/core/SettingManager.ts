@@ -14,7 +14,10 @@ export default class SettingManager {
   static getSetting(context: Context, type: string): any {
     let name: string | undefined = this._getContextSetting(context, type);
     if (name === undefined) {
-      return undefined;
+      console.log('cannot found context setting.')
+      console.log(`context: ${JSON.stringify(context, null, 2)}`)
+      console.log(`type: ${type}`)
+        return undefined;
     }
 
     let serverProperties = ApplicationContext.instance.serverSettings.properties;
