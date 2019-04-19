@@ -2,7 +2,7 @@
 Run Any Thing from Any Where
 
 ## How to setup
-The product is in developing...
+The product is under developing...
 
 - Download the project
 
@@ -12,6 +12,13 @@ The host application is used to save connection information to all servers.
 
 ```sh
 cd server
+
+# create configuration files
+mv src\data\host-sample.json src\data\host.json
+mv src\data\server-sample.json src\data\server.json
+mv tasks\config-sample.js tasks\config.js
+
+# start the host application
 yarn start
 ```
 
