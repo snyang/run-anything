@@ -1,0 +1,20 @@
+{
+  "$schema": "./schema/host.schema.json",
+  "properties": [
+    {
+      "type": "server",
+      "name": "host",
+      "value": {
+        "hostUrl": "http://localhost:9000",
+        "isHost": true
+      }
+    },
+    {
+      "type": "server",
+      "name": "<server id>",
+      "value": {
+        "hostUrl": "http://<server name>:9000"
+      }
+    }
+  ]
+}

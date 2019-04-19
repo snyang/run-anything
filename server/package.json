@@ -1,0 +1,48 @@
+{
+  "name": "run-anything",
+  "version": "0.1.0",
+  "description": "Run anything from anywhere",
+  "author": {
+    "name": "Yang Ning",
+    "email": "steven_nyang@outlook.com",
+    "url": "https://github.com/snyang"
+  },
+  "license": "MIT License",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snyang/run-anything.git"
+  },
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.4",
+    "sqlite3": "^4.0.6",
+    "typeorm": "^0.2.12",
+    "types": "^0.1.1"
+  },
+  "exclude": [
+    "server"
+  ],
+  "scripts": {
+    "start": "npx ts-node ./src/StartServer.ts",
+    "gulp": "gulp",
+    "test-data": "npx ./test/CreateTestData.js"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "@types/node": "^10.12.21",
+    "graceful-fs": "^4.1.15",
+    "gulp": "^4.0.0",
+    "gulp-scp2": "^0.2.0",
+    "gulp-shell": "^0.6.5",
+    "gulp-ssh": "^0.7.0",
+    "require-dir": "^1.2.0",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.1"
+  }
+}

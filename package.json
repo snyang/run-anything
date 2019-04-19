@@ -1,0 +1,16 @@
+{
+  "name": "run-anything",
+  "version": "0.1.0",
+  "description": "Run anything from anywhere",
+  "author": {
+    "name": "Yang Ning",
+    "email": "steven_nyang@outlook.com",
+    "url": "https://github.com/snyang"
+  },
+  "license": "MIT License",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snyang/run-anything.git"
+  },
+  "private": true
+}

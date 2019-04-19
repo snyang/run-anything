@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "run anything server schema",
+  "description": "run anything server schema",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "description": "root: properties(properties[])",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "description": "property name(properties[].type)",
+            "type": "string"
+          },
+          "name": {
+            "description": "property name(properties[].name)",
+            "type": "string"
+          },
+          "value": {
+            "description": "property value(properties[].value)",
+            "anyOf": [
+              {
+                "description": "for basic property whose value is a string",
+                "type": "string"
+              },
+              {
+                "description": "for other property",
+                "type": "object"
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "value"
+        ]
+      }
+    }
+  },
+  "required": [
+    "properties"
+  ]
+}

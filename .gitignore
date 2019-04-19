@@ -30,10 +30,14 @@ bower_components
 .lock-wscript
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
+build/
+client/build/
 build/Release
 
 # Dependency directories
 node_modules/
+client/node_modules/
+server/node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -59,3 +63,11 @@ typings/
 
 # next.js build output
 .next
+
+# test temporay data
+*.db
+
+# server configuration files
+server/src/data/host.json
+server/src/data/server.json
+server/tasks/config.js

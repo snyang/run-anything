@@ -1,0 +1,27 @@
+{
+  "$schema": "./schema/server.schema.json",
+  "properties": [
+    {
+      "name": "hostname",
+      "value": "localhost"
+    },
+    {
+      "name": "sqlite db",
+      "type": "db",
+      "value": {
+        "type": "sqlite",
+        "database": "test/data/sqlite.db"
+      }
+    },
+    {
+      "name": "oracle db",
+      "type": "db",
+      "value": {
+        "type": "oracle",
+        "username": "<db user>",
+        "password": "<db password>",
+        "connectString": "<host[:port]/sid>"
+      }
+    }
+  ]
+}

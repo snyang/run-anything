@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "stylelint-config-recommended"
+  ],
+  "rules": {
+    "block-opening-brace-space-before": "always-multi-line",
+    "declaration-bang-space-before": null
+  }
+}
