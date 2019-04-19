@@ -8,7 +8,7 @@ const requireDir = require('require-dir');
 requireDir('./tasks', { recurse: true });
 
 // deploy the server application to the server
-gulp.task('default', gulp.series('deploy'));
+gulp.task('deploy', gulp.series('deploy'));
 
 // start the remote server
 gulp.task('start-server', gulp.series('remote:start'));

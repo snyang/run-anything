@@ -11,9 +11,9 @@
     },
     {
       "type": "server",
-      "name": "ynlora",
+      "name": "<server id>",
       "value": {
-        "hostUrl": "http://ynlora:10108"
+        "hostUrl": "http://<server name>:9000"
       }
     }
   ]

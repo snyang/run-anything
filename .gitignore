@@ -66,3 +66,8 @@ typings/
 
 # test temporay data
 *.db
+
+# server configuration files
+server/src/data/host.json
+server/src/data/server.json
+server/tasks/config.js

@@ -3,10 +3,10 @@ const path = require('path');
 var config = {
   // This application properties for operating
   "sshConfig": {
-    "host": "9.110.179.196",
-    "port": "24022",
-    "username": "opuser",
-    "password": "passw0rd",
+    "host": "<server name>",
+    "port": "22",
+    "username": "user",
+    "password": "password",
     "readyTimeout": 30000
   },
   "source": {
@@ -17,7 +17,7 @@ var config = {
     "package_json_dir": "package.json",
   },
   "remote": {
-    "app_root_dir": "/home/opuser/.run-anything"
+    "app_root_dir": "/home/user/.run-anything"
   }
 }
 

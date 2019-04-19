@@ -5,7 +5,7 @@ const GulpSSH = require('gulp-ssh');
 const path = require('path');
 const scp = require('gulp-scp2');
 
-const config = require('./GulpConfig.js');
+const config = require('./config.js/index.js');
 
 let ssh = new GulpSSH({
   ignoreErrors: false,

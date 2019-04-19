@@ -26,8 +26,11 @@ export class SqlService implements IService {
       let result = await service.query(request.body.statement);
       response.json({ rows: result });
     } catch (error) {
-      // use error object
-      response.status(500).json(JSON.stringify(error, null, 2));
+      let errorMessage = JSON.stringify(error, null, 2);
+      if (errorMessage.trim() == `{}`) {
+        errorMessage = error.toString();
+      }
+      response.status(500).json(errorMessage);
     }
   }
 }
