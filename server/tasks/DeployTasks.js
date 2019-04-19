@@ -2,7 +2,7 @@
 
 const gulp = require('gulp');
 const shell = require('gulp-shell');
-const config = require('./config.js/index.js');
+const config = require('./config.js');
 require('./RemoteTasks');
 
 gulp.task('print-config', (callback) => {
